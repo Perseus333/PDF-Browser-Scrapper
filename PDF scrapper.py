@@ -1,7 +1,6 @@
-import smtplib
 import requests
 from bs4 import BeautifulSoup
-
+import smtplib
 
 webs = []
 
@@ -37,24 +36,34 @@ def url_list():
 
 
 # Sends you the list of the pdf if you want to look them later
-server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
-# Replace this values
-email = "your@email.com"
-password = "your_password123"
+print('Do you wish that we send you the link through your email?[yes, no]')
+send_mail = input('> ')
 
+if send_mail.lower() == 'yes':
+    server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
-# If you want to send yourself an email you will have to allow less secure apps in google using this link:
-# (https://www.google.com/settings/security/lesssecureapps)
+    # Replace this values
+    email = "your@email.com"
+    password = "your_Password123"
 
-try:
-    server.login(email, password)
-    server.sendmail(email, email, list_of_pdfs)
-    print("Hopefully you have send yourself an email with the list of pdfs")
-    print("But this is the list of pdfs that we found:")
-    url_list()
+    # If you want to send yourself an email you will have to allow less secure apps in google using this link:
+    # (https://www.google.com/settings/security/lesssecureapps)
 
-except smtplib.SMTPAuthenticationError:
-    print("Your username or password is incorrect, please write them again")
-    print("Here are the pdf webs that we found:")
+    try:
+        server.login(email, password)
+        if send_mail:
+            server.sendmail(email, email, list_of_pdfs)
+            print("Hopefully you have send yourself an email with the list of pdfs")
+            print("But this is the list of pdfs that we found:")
+            url_list()
+
+    except smtplib.SMTPAuthenticationError:
+        print("Your username or password is incorrect, please write them again")
+        print("Here are the pdf webs that we found:")
+        url_list()
+    quit()
+
+else:
+    print('These are the pdfs that we found: ')
     url_list()
