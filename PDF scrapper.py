@@ -30,9 +30,12 @@ def url_list():
     if len(list_of_pdfs) != 0:
         for u in list_of_pdfs:
             print(u.replace('/url?q=', ''))
-        quit()
+
     else:
         print("No pdfs found")
+
+
+url_list()
 
 
 # Sends you the list of the pdf if you want to look them later
@@ -44,8 +47,8 @@ if send_mail.lower() == 'yes':
     server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
     # Replace this values
-    email = "your@email.com"
-    password = "your_Password123"
+    email = "perseusmith73@gmail.com"
+    password = "Perseus#333"
 
     # If you want to send yourself an email you will have to allow less secure apps in google using this link:
     # (https://www.google.com/settings/security/lesssecureapps)
@@ -55,14 +58,10 @@ if send_mail.lower() == 'yes':
         if send_mail:
             server.sendmail(email, email, list_of_pdfs)
             print("Hopefully you have send yourself an email with the list of pdfs")
-            print("But this is the list of pdfs that we found:")
-            url_list()
 
     except smtplib.SMTPAuthenticationError:
         print("Your username or password is incorrect, please write them again")
-        print("Here are the pdf webs that we found:")
-        url_list()
-    quit()
+
 
 else:
     print('These are the pdfs that we found: ')
