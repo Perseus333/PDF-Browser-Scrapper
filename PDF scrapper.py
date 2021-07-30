@@ -47,8 +47,8 @@ if send_mail.lower() == 'yes':
     server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
 
     # Replace this values
-    email = "perseusmith73@gmail.com"
-    password = "Perseus#333"
+    email = "your@email.com"
+    password = "Yourpassword"
 
     # If you want to send yourself an email you will have to allow less secure apps in google using this link:
     # (https://www.google.com/settings/security/lesssecureapps)
